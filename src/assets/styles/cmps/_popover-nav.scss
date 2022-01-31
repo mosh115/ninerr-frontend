@@ -1,0 +1,56 @@
+.transparent-bacground {
+    position: fixed;
+    background-color: rgba(0,0,0,0);
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    // pointer-events: none;
+}
+.popover-nav {
+    position: fixed;
+    top: 67px;
+    right: 35px;
+    width: 207px;
+    background-color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+    border: 1px solid #dadbdd;
+    color: #62646a;
+    margin: 0;
+    li {
+        list-style: none;
+        &:not(.line):hover {
+            color: $clr1;
+        }
+        // .a {
+        //     color: inherit;       
+        // }
+    }
+        .line {
+            border-top: 1px solid #dadbdd;
+            padding: 0;
+            margin: 5px 0;
+            font-size: 0;
+        }
+        .triangle1 {
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+            position: absolute;
+            top:-10px;
+            right: 4px;
+        }
+        .triangle2 {
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #dadbdd;
+            position: absolute;
+            top:-11px;
+            right: 4px;
+        }
+    
+}

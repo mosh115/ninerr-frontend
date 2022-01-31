@@ -1,0 +1,32 @@
+.user-msg {
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: $clr6;
+    padding: 10px;
+    font-size: 1.2em;
+    position: fixed;
+    z-index: 20;
+    top: 80px;
+    right: 30px;
+    background-color: $clr1;
+    border-radius: 4px;
+    .btn-x {
+        color: black;
+        // float: right;
+        border: 0;
+        border-radius: 50%;
+        margin: 5px;
+        padding: 3px;
+        // border: solid 1px $clr2;
+        // background-color: #222;
+    }
+
+    // .success {
+    //     // visibility: visible;
+    //     background-color: rgb(41, 189, 73);
+    // }
+    // .danger {
+    //     background-color: rgb(216, 59, 59);
+    // }
+}

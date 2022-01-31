@@ -1,0 +1,20 @@
+.table-rating {
+    color: $clr13;
+    width: 50%;
+    td {
+        padding: 6px;
+        min-width: 63px;
+        font-weight: 600;
+        line-height: 100%;
+    }
+    .raters {
+        // padding-top: 0;
+        max-width: 40px;
+        // padding-inline-end: 10px;
+    }
+    .grow {
+        padding-top: 10px;
+        width: auto;
+        flex-grow: 1;
+    }
+}

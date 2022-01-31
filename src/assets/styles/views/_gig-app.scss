@@ -1,0 +1,46 @@
+.gig-app {
+    color: $clr3;
+    margin-top: 80px;
+    padding-top: 34px;
+    
+    .headr-nav  {
+        margin-top: 30px;
+        padding-bottom: 30px;
+        &>*{
+        padding-inline-end: 10px;
+        color: #62646a;
+        fill: #62646a;
+        }
+        span {
+            display: flex;
+            align-items: center;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    .box{
+        max-width: 150px;
+    }
+    //added space between filter box and gigs
+    .filters{
+        margin-bottom: 1em;
+        align-items: center;
+
+        .claer-btn {
+            height: 56px;
+            padding: 8px;
+            border: 1px solid #c4c4c4;
+            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+            &:hover{
+                background-color: $clr1;
+                color: white;
+            }
+            p {
+                text-align: center;
+            }
+        }
+    }
+}

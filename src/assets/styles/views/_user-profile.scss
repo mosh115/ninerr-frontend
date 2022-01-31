@@ -1,0 +1,160 @@
+.profile-page-container {
+    margin-top: 80px;
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: 50px 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+   
+    .user-card {
+        position: relative;
+        width: 400px;
+        padding: 30px;
+        justify-content: center;
+        align-items: center;
+        align-self: start;
+        background-color: white;
+        border: 1px solid $clr12;
+
+        &>*:not(last-child){
+            margin-bottom: 16px;
+        }
+        // line-height: 130%;
+        .user-avatar {
+            position: relative;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            // &:hover {
+            // color: $clr6 !important; 
+            p {
+                font-size: 3em;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+            &:hover + .add-picture{
+                display: block;
+            }
+        }
+        .user-picture{
+            position: relative;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: contain;
+                justify-self: center;
+            }
+
+            &:hover + .add-picture{
+                display: flex;
+            }
+        }
+        .add-picture{
+            display: none;
+            // visibility: hidden;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            left: 50% ;
+            transform: translate(-50%);
+            background: rgba(0,0,0,.8);
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 60%;
+                justify-self: center;
+            }
+            &:hover{
+                display: flex;
+            }
+            input {
+                display: none;
+            }
+        }
+        .user-name{
+            font-size: 20px;
+            font-weight: 700;
+            color: #222325;
+            text-align: center;
+            display: block;
+            padding-bottom: 10px;
+            margin: 0;
+        }
+        .edit-link{
+            fill: #B5B6BA;
+        }
+        ul{
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            li {
+                list-style: none;
+
+                .user-details-icon {
+                    width: 13px;
+                    height: 13px;
+                    fill: #62646A;
+                }
+                .b {
+                    font-weight: bold;
+                }
+            } 
+            .line {
+                border-top: 1px solid #dadbdd;
+                padding: 0;
+                margin: 5px 0;
+                font-size: 0;
+            }           
+        }
+    }
+    .user-gigs{
+        min-width: 484px;
+        align-self: start;
+        
+        .craet-gig{
+            background-color: white;
+            border: 1px solid $clr12;
+            padding: 20px 24px;
+            align-items: center; // maybe better start?
+
+            button{
+                font-size: 13px;
+                padding: 0 12px;
+                line-height: 32px;
+                font-weight: 700;
+                color: #fff;
+                border: 1px solid transparent;
+                border-radius: 3px;
+                margin-left: 20px;
+
+                &:hover{
+                    background-color: #3fca89;
+                }
+            }
+        }
+        .orders-header {
+            margin-top: 30px;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid $clr12;
+            font-weight: 700;
+            color: #222325;
+            span {
+                color: #62646a;
+                font-weight: 500;
+            }
+        }
+    }
+}

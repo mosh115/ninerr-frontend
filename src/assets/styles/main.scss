@@ -1,0 +1,44 @@
+// Setup
+@import "setup/variables";
+@import "setup/functions";
+@import "setup/mixins";
+@import "setup/typography";
+@import "setup/image-gallery";
+
+// Basics
+
+@import "basics/helpers";
+@import "basics/layout";
+@import "basics/base";
+@import "basics/links";
+@import "basics/forms";
+
+// Views
+@import "views/about-us";
+@import "views/home-page";
+@import "views/gig-app";
+@import "views/gig-details";
+@import "views/review-app";
+@import "views/user-profile";
+
+// Components
+
+@import "cmps/order-table";
+@import "cmps/loader";
+@import "cmps/ninerr-guides";
+@import "cmps/explore-market-place";
+@import "cmps/market-place-service";
+@import "cmps/popular-service-list";
+@import "cmps/popular-service-card";
+@import "cmps/progress-bar";
+@import "cmps/app-header";
+@import "cmps/app-footer";
+@import "cmps/user-msg";
+@import "cmps/gig-preview";
+@import "cmps/review-item";
+@import "cmps/login-signup";
+@import "cmps/popover-nav";
+@import "cmps/table-rating";
+@import "cmps/add-gig";
+@import "cmps/user-avatar-picture.scss";
+@import "cmps/order-card";

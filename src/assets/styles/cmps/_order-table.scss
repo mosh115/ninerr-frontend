@@ -1,0 +1,29 @@
+.order-table {
+    .css-1ex1afd-MuiTableCell-root {
+        padding: 3px;
+    }
+    .table-row:nth-child(odd) {
+        background: $clr4;
+    }
+    .table-row {
+        padding: 3px;
+        //     .transperent {
+        //         background-color: transparent;
+        //     }
+    }
+    // background-color: grey;
+
+    button {
+        width: 75px;
+        font-size: 13px;
+        padding: 0 12px;
+        line-height: 32px;
+        font-weight: 700;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 3px;
+    }
+    .btn-decline {
+        background-color: red;
+    }
+}
