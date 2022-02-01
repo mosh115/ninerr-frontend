@@ -19,11 +19,11 @@ const MenuProps = {
 };
 
 const levels = [
+    'All',
     'Top Rated Seller',
     'Level 2 Seller',
     'Level 1 Seller',
-    'New Seller',
-    'all'
+    'New Seller'
 ];
 
 export function SelectSellerLevels({ sellerLevel, setSellerLevel }) {
