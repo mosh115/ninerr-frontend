@@ -62,7 +62,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
     const [filteredGigs2, setFilteredGigs2] = useState(gigs)
 
     const [daysToDelivery, setDaysToDelivery] = useState(Infinity)
-    const [sellerLevel, setSellerLevel] = useState(['all'])
+    const [sellerLevel, setSellerLevel] = useState(['All'])
     useEffect(() => {
         filterGigs();
     }, [daysToDelivery, sellerLevel])
@@ -70,7 +70,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
     const filterGigs = () => {
         // console.log('gigs 1', gigs);
         let filteredGigs = gigs.filter((gig) => gig.daysToMake <= daysToDelivery)
-        if (sellerLevel[0] !== 'all') {
+        if (sellerLevel[0] !== 'All') {
             filteredGigs = gigs.filter((gig) => {
                 let filterdLevel = sellerLevel.map((level) => level === gig.owner.level)
                 if (filterdLevel.includes(true)) return true
@@ -83,11 +83,13 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
 
     const onClearAllFilters = () => {
         setDaysToDelivery(Infinity)
-        setSellerLevel(['all'])
+        setSellerLevel(['All'])
         setFilter({ title: '', tags: [], userId: '' })
         loadGigs()
     }
 
+
+    const areGigs = filteredGigs2.length ? true : false;
     // console.log('gigApp', filterAfterMount.title)
     // if (!gigs) return <h1>Loading...</h1>
     return (
@@ -113,7 +115,8 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
                 <SelectSellerLevels setSellerLevel={setSellerLevel} sellerLevel={sellerLevel} />
                 <div onClick={onClearAllFilters} className="claer-btn pointer flex"><p>Clear Filters</p></div>
             </section>
-            <GigList gigs={filteredGigs2} className="gig-list" />
+            {areGigs && <GigList gigs={filteredGigs2} className="gig-list" />}
+            {!areGigs && <h1 className="no-gig-msg">No Gigs maching your search, try clearing filters</h1>}
 
         </div>
     )
