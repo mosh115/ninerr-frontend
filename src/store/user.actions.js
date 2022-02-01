@@ -32,7 +32,7 @@ export function updateUser(userToUpdate) {
     return async (dispatch) => {
         try {
             const user = await userService.update(userToUpdate)
-            console.log('user after action', user);
+            // console.log('user after action', user);
             dispatch({ type: 'SET_USER', user })
 
         } catch (err) {
@@ -68,7 +68,7 @@ export function onSignup(credentials) {
                 user
             })
         } catch (err) {
-            // showErrorMsg('Cannot signup')
+            showErrorMsg('Cannot signup')
             console.log('Cannot signup', err)
         }
 
