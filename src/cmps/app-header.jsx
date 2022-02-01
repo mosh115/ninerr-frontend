@@ -28,6 +28,8 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   const [isPopoverNav, togglePopoverNav] = useState(false)
   const [searchContent, setSearchContent] = useState('')
 
+
+
   useEffect(() => {
     socketService.on('order-added', (order) => {
       setIsNotifaction(!isNotifaction)
@@ -55,32 +57,41 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     else document.body.style.overflow = 'unset';
   }, [isSignIn])
 
+
   //* controls header beaviour - background color, sticky or scrolling, depends on the current page
-  const [navbar, setNavbar] = useState(false)
-  const [subNavbar, setSubNavbar] = useState(false)
+  const [navbarWhite, setNavbarWhite] = useState(false)
+  const [subNavbarShow, setSubNavbarShow] = useState(false)
   const [navsDisappear, setNavsDisappear] = useState(false)
- 
 
+  useEffect(() => {
+    changeHeaderBehavior()
+    // adding the event when scroll change background
+    window.addEventListener('scroll', changeHeaderBehavior, true)
+    return () => {
+      window.removeEventListener('scroll', changeHeaderBehavior, true);
+    }
+  }, [currLocation])
 
-  //* navbar scroll/route behaviour change 
-
-  const changeHeaderBehaviour = () => {
+  //* navbar scroll/route behavior change 
+  const changeHeaderBehavior = () => {
 
     //* in homepage, when starting to scroll - will change background to white
     if (window.scrollY >= 20) {
-      setNavbar(true)
-    } else {
-      setNavbar(false)
+      setNavbarWhite(true)
     }
-    //* and when scrolling some more - the categories navbar will appear
+    else {
+      setNavbarWhite(false)
+    }
+
+    //* when scrolling more, subNavbar shows
     if (window.scrollY >= 250) {
-      setSubNavbar(true)
+      setSubNavbarShow(true)
     } else {
-      setSubNavbar(false)
+      setSubNavbarShow(false)
     }
-    //* in pages except HomePage, both navbars appear with white background, 
-    //* and the search bar shows.
-    //* and both scroll with page after scrolling some distance
+    
+    //* except HomePage, both navbars show with white background, 
+    //* and scrolls up with the page
     if (window.scrollY >= 400 && currLocation !== '/') {
       setNavsDisappear(true)
     } else {
@@ -88,15 +99,6 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     }
   }
 
-  useEffect(() => {
-    changeHeaderBehaviour()
-    // adding the event when scroll change background
-    window.addEventListener("scroll", changeHeaderBehaviour, true)
-    return () => {
-      window.removeEventListener("scroll", changeHeaderBehaviour, true);
-    }
-
-  }, [currLocation])
 
 
   const handleChange = ({ target }) => {
@@ -114,12 +116,12 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   //   if (isSignIn) document.body.style.overflow = 'hidden';
   //   else document.body.style.overflow = 'unset';
   // }, [isSignIn])
-  
- 
+
+
   return (
     <header className="app-header">
       <div className=
-        {(currLocation === '/' && !navbar) ?
+        {(currLocation === "/" && !navbarWhite) ?
           "navbar nav-container flex align-center space-between" :
           (!navsDisappear ?
             "navbar white nav-container flex align-center space-between" :
@@ -132,10 +134,10 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
           <NavLink className="logo-font clean-link" to="/">
             Ninerr<span className="logo-point">.</span>
           </NavLink>
-          <form className={subNavbar || currLocation !== '/' ?
-            'navbar-search-box ' :
-            'navbar-search-box hidden'}>
-            <div className='search-box-icon'><i><FaSearch /></i> </div>
+          <form className={subNavbarShow || currLocation !== '/' ?
+            "navbar-search-box" :
+            "navbar-search-box hidden"}>
+            <div className="search-box-icon"><i><FaSearch /></i> </div>
             <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder="Find Services" />
             <button onClick={onSearch}>Search</button>
           </form>
@@ -175,7 +177,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         </nav>
 
       </div>
-      <div className={!subNavbar && currLocation === '/' ?
+      <div className={!subNavbarShow && currLocation === '/' ?
         "sub-nav hidden" :
         (navsDisappear ? "sub-nav no-sticky" : "sub-nav")
       }>

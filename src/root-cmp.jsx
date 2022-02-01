@@ -6,7 +6,7 @@ import routes from './routes'
 
 import { AppHeader } from './cmps/app-header'
 import { AppFooter } from './cmps/app-footer'
-import { ScrollToTop } from './cmps/scroll-to-top'
+// import { ScrollToTop } from './cmps/scroll-to-top'
 // import { UserDetails } from './pages/user-details'
 
 export class RootCmp extends React.Component {
@@ -17,7 +17,7 @@ export class RootCmp extends React.Component {
                 <BrowserRouter>
                     <AppHeader />
                     <main>
-                        <ScrollToTop />
+                        {/* <ScrollToTop /> */}
                         <Routes>
                             {routes.map(route => <Route key={route.path} exact element={route.component} path={route.path} />)}
                             {/* <Route path="user/:id" element={<UserDetails />} /> */}
