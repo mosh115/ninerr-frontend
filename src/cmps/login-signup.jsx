@@ -9,18 +9,19 @@ export function LoginSignup(props) {
     // console.log(props);
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(props.isSignUp)
-    const [users, setUsers] = useState([])
+    // const [users, setUsers] = useState([])
 
-    useEffect(async () => {
-        const users = await userService.getUsers()
-        setUsers(users)
-    }, [])
+    // useEffect(async () => {
+    //     const users = await userService.getUsers()
+    //     setUsers(users)
+    // }, [])
 
     useEffect(() => {
         const { username, password } = credentials
         if (username === 'guest' && password === 'guest') {
             props.onLogin(credentials);
             clearState()
+            props.toggleSignIn(false)
         }
     }, [credentials]);
 
@@ -37,11 +38,13 @@ export function LoginSignup(props) {
 
     function onGuestMode() {
         setCredentials({ username: 'guest', password: 'guest', fullname: '' })
+
     }
     const onLogin = (ev = null) => {
         if (ev) ev.preventDefault();
         if (!credentials.username) return;
         props.onLogin(credentials);
+        props.toggleSignIn(false)
 
 
         clearState()
@@ -53,6 +56,7 @@ export function LoginSignup(props) {
         if (!credentials.username || !credentials.password || !credentials.fullname) return;
         props.onSignup(credentials);
         clearState()
+        props.toggleSignIn(false)
         // history.push(location.pathname);
     }
 

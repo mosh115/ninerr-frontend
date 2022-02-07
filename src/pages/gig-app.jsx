@@ -6,6 +6,8 @@ import { GigList } from "../cmps/gig-list.jsx"
 import { loadGigs, addGig, setFilter } from "../store/gig.actions.js"
 import { SelectDelivery } from '../cmps/select-delivery'
 import { SelectSellerLevels } from '../cmps/select-seller'
+import { ScrollToTop } from "../cmps/scroll-to-top"
+
 // import { showSuccessMsg } from "../services/event-bus.service.js"
 
 function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
@@ -94,6 +96,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
     // if (!gigs) return <h1>Loading...</h1>
     return (
         <div className="gig-app main-container">
+            <ScrollToTop />
 
             <nav className="headr-nav flex">
                 <Link to="/">Ninerr</Link>

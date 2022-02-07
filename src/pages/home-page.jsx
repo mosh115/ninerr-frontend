@@ -13,13 +13,14 @@ import workingWomen from '../assets/img/home-page/16.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
 
 import { PopularServiceList } from '../cmps/popular-service-list'
-import {PoplarServiceCard} from '../cmps/popular-service-card'
+import { PoplarServiceCard } from '../cmps/popular-service-card'
 import { GigApp } from '../pages/gig-app'
 import { ExploreMarketPlace } from '../cmps/explore-market-place'
 import { onSetPage, setFilter } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
 import { socketService } from '../services/socket.service';
+import { ScrollToTop } from "../cmps/scroll-to-top"
 
 // const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
 const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5];
@@ -78,6 +79,7 @@ function _HomePage({ setFilter }) {
 
     return (
         <section className='home-page'>
+            <ScrollToTop />
             {/* <section> */}
             <div className='hero-wrapper full'>
                 <div className={heroImg.idx === 0 ? 'hero-background hero-jeff' : 'hero-background hero-jeff transparent'}>

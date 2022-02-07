@@ -32,7 +32,8 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
   useEffect(() => {
     socketService.on('order-added', (order) => {
-      setIsNotifaction(!isNotifaction)
+      console.log('newOrder');
+      // setIsNotifaction(!isNotifaction)
       // interval = setInterval(() => {
 
       // }, 1000)
@@ -42,6 +43,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
       // showSuccessMsg(`Order was added, check it out ${order._id}`)
     }, [])
   })
+
 
   //* gets the current page's path
   let currLocation = useLocation().pathname
@@ -54,14 +56,16 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
   useEffect(() => {
     if (isSignIn) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'unset';
+    else document.body.style.overflow = 'scroll';
   }, [isSignIn])
 
 
   //* controls header beaviour - background color, sticky or scrolling, depends on the current page
   const [navbarWhite, setNavbarWhite] = useState(false)
   const [subNavbarShow, setSubNavbarShow] = useState(false)
-  const [navsDisappear, setNavsDisappear] = useState(false)
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false)
+
+
 
   useEffect(() => {
     changeHeaderBehavior()
@@ -70,7 +74,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     return () => {
       window.removeEventListener('scroll', changeHeaderBehavior, true);
     }
-  }, [currLocation])
+  }, [])
 
   //* navbar scroll/route behavior change 
   const changeHeaderBehavior = () => {
@@ -89,13 +93,13 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     } else {
       setSubNavbarShow(false)
     }
-    
+
     //* except HomePage, both navbars show with white background, 
     //* and scrolls up with the page
     if (window.scrollY >= 400 && currLocation !== '/') {
-      setNavsDisappear(true)
+      setIsHeaderFixed(true)
     } else {
-      setNavsDisappear(false)
+      setIsHeaderFixed(false)
     }
   }
 
@@ -123,7 +127,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
       <div className=
         {(currLocation === "/" && !navbarWhite) ?
           "navbar nav-container flex align-center space-between" :
-          (!navsDisappear ?
+          (!isHeaderFixed ?
             "navbar white nav-container flex align-center space-between" :
             "navbar white nav-container flex align-center space-between no-sticky")
         } >
@@ -179,7 +183,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
       </div>
       <div className={!subNavbarShow && currLocation === '/' ?
         "sub-nav hidden" :
-        (navsDisappear ? "sub-nav no-sticky" : "sub-nav")
+        (isHeaderFixed ? "sub-nav no-sticky" : "sub-nav")
       }>
 
         {['Website design', 'Wordpress', 'Logo design', 'Music', 'Voice Over', 'Translating'].map((tag, idx) =>

@@ -15,6 +15,7 @@ import { AvatarPicture } from '../cmps/user-avatar-picture';
 import { addOrder } from '../store/order.actions'
 import { Loader } from '../cmps/Loader';
 import { showErrorMsg } from '../services/event-bus.service';
+import { ScrollToTop } from "../cmps/scroll-to-top"
 
 
 
@@ -84,6 +85,7 @@ function _GigDetails({ user, addOrder }) {
 
     return (
         <section className='gig-details flex '>
+            <ScrollToTop />
 
             <section className='details-container'>
                 <div className='gig-overview'>
