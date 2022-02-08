@@ -17,12 +17,10 @@ export function PopularServiceList() {
         { img: VideoExplainer, title: 'Video Explainer', subTitle: 'Engage your audience' },
         { img: LogoDesign, title: 'Logo Design', subTitle: 'Build your brand' },
         { img: SocialMedia, title: 'Social Media', subTitle: 'Reach more costumers' }
-
     ]
 
     return (
         <section>
-
             <ul className='popular-service-list clean-list'>
                 {popularServices.map((service, idx) => {
                     return (
@@ -34,7 +32,5 @@ export function PopularServiceList() {
                 )}
             </ul>
         </section>
-
     )
-
 }

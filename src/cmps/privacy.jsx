@@ -8,7 +8,6 @@ export function Privacy() {
             <h1>Your Privacy is our Policy</h1>
             <h3>Could it be any better? Probably not ...</h3>
             <br /><br /><br /><br /><br /><br /><br />
-            {/* <button>Start exploring </button> */}
         </section>
     )
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-// import useState from 'react-usestateref'
 import { connect } from "react-redux"
 import { useLocation, Link } from 'react-router-dom';
 import { GigList } from "../cmps/gig-list.jsx"
@@ -8,9 +7,9 @@ import { SelectDelivery } from '../cmps/select-delivery'
 import { SelectSellerLevels } from '../cmps/select-seller'
 import { ScrollToTop } from "../cmps/scroll-to-top"
 
-// import { showSuccessMsg } from "../services/event-bus.service.js"
 
-function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
+
+function _GigApp({ loadGigs, gigs, setFilter }) {
 
     let url = window.location.href;
 
@@ -38,14 +37,13 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
             if (key === 'tags') filterBy[key] = [...filterBy.tags, value];
             else filterBy[key] = value;
         }
-        // console.log(filterBy.title);
+
         setFilterAfterMount(filterBy)
         setFilter(filterBy)
 
         const fetchGigs = async () => {
             try {
                 const gigs = await loadGigs()
-                // console.log('from mount, async', gigs);
                 setFilteredGigs(gigs)
             }
             catch (err) {
@@ -70,7 +68,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
     }, [daysToDelivery, sellerLevel])
 
     const filterGigs = () => {
-        // console.log('gigs 1', gigs);
+
         let filteredGigs = gigs.filter((gig) => gig.daysToMake <= daysToDelivery)
         if (sellerLevel[0] !== 'All') {
             filteredGigs = gigs.filter((gig) => {
@@ -79,7 +77,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
                 else return false
             })
         }
-        // console.log('filteredGigs 2', filteredGigs);
+
         setFilteredGigs2(filteredGigs)
     }
 
@@ -92,12 +90,10 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
 
 
     const areGigs = filteredGigs2.length ? true : false;
-    // console.log('gigApp', filterAfterMount.title)
-    // if (!gigs) return <h1>Loading...</h1>
+
     return (
         <div className="gig-app main-container">
             <ScrollToTop />
-
             <nav className="headr-nav flex">
                 <Link to="/">Ninerr</Link>
                 <span>

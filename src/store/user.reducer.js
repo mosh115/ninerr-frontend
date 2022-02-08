@@ -4,7 +4,6 @@ import { userService } from '../services/user.service.js'
 const initialState = {
 
     user: userService.getLoggedinUser(),
-    // users: [],
     watchedUser: null
 }
 export function userReducer(state = initialState, action) {
@@ -20,10 +19,6 @@ export function userReducer(state = initialState, action) {
         //     newState = {
         //         ...state,
         //         users: state.users.filter(user => user._id !== action.userId) }
-        //     break;
-
-        // case 'SET_USERS':
-        //     newState = { ...state, users: action.users }
         //     break;
 
         default:

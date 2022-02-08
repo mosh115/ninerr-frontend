@@ -1,29 +1,28 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
-import { socketService } from '../services/socket.service';
-
-import { uploadImg } from "../services/cloudinary.service"
-import { updateUser } from '../store/user.actions';
-// import { OrderTable } from '../cmps/order-table';
-import { OrderCard } from '../cmps/order-card';
-import { loadOrders, updateOrder, setOrderFilter } from '../store/order.actions';
-import { loadGigs, setFilter } from "../store/gig.actions.js"
+import { Link, useNavigate } from "react-router-dom"
 
 
-
-import cameralogo from '../assets/img/cameralogo.png';
 import { showUserMsg } from '../services/event-bus.service';
+import { uploadImg } from "../services/cloudinary.service"
+
+import { updateUser } from '../store/user.actions';
+import { loadGigs, setFilter } from "../store/gig.actions.js"
+import { loadOrders, updateOrder, setOrderFilter } from '../store/order.actions';
+
+import { OrderCard } from '../cmps/order-card';
+import cameralogo from '../assets/img/cameralogo.png';
+
+
+
 
 
 
 function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
-    // console.log(user);
+
     let navigate = useNavigate();
 
     useEffect(() => {
-        // socketService.on('testing', msg => console.log(msg))
         if (!user) {
             showUserMsg('Please Login')
             navigate('/');
@@ -34,7 +33,7 @@ function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, ord
         setOrderFilter(orderFilter)
         setFilter({ title: '', tags: [], userId: user._id })
         loadGigs()
-        // loadOrders()
+
     }, [])
 
     useEffect(() => {
@@ -45,10 +44,7 @@ function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, ord
         setFilter({ title: '', tags: [], userId: '' })
     }, [])
 
-    console.log('orders', orders);
-    // useEffect(() => {
-    //     // loadOrders()
-    // }, [orders])
+
 
 
 
@@ -77,8 +73,7 @@ function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, ord
     orders.forEach(order => {
         totalPrice += +order.gig.price;
     });
-    // if (!orders.length) 
-    // if (orders[0].seller._id !== user._id) return <h1>Loading..</h1>
+
     return (
         <section className="profile-page-container flex">
             <div className="user-card flex column">
@@ -140,18 +135,18 @@ function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, ord
                     <Link to="/add"><button>Create a New Gig</button></Link>
                 </div>
 
-                {/* {!orders.length && <h1>No orders to show.</h1>} */}
+
 
                 {areOrders &&
-                    <React.Fragment>
+                    <>
                         <div className='orders-header'>Active Orders -
                             <span className='oreders-total'> {numOfOrders} (${totalPrice})</span>
-                        </div> 
+                        </div>
                         <div className='order-list'>
                             {orders.map((order, idx) => <OrderCard key={idx} updateOrder={updateOrder} order={order} />)}
-                            {/* <OrderTable updateOrder={updateOrder} orders={orders} /> */}
+
                         </div>
-                    </React.Fragment>
+                    </>
                 }
 
             </div>

@@ -1,4 +1,4 @@
-import { userService } from "../services/user.service"
+
 
 const initialState = {
     orders: [],
@@ -37,18 +37,9 @@ export function orderReducer(state = initialState, action) {
         default:
             newState = state
 
-        // case 'UNDO_REMOVE_ORDER':
-        //     if (state.lastRemovedOrder) {
-        //         newState = { ...state, orders: [...state.orders, state.lastRemovedOrder], lastRemovedOrder: null }
-        //     }
-        //     break
-        // default:
+
     }
-    // For debug:
-    // window.orderState = newState
-    // console.log('Prev State:', state)
-    // console.log('Action:', action)
-    // console.log('New State:', newState)
+
     return newState
 
 }

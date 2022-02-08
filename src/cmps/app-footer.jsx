@@ -1,26 +1,15 @@
-import React, { useState } from "react"
-import { connect } from "react-redux"
+import React from "react"
 import { NavLink } from "react-router-dom"
 import { UserMsg } from './user-msg.jsx'
-import {
-  FaPinterest,
-  FaFacebook,
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-} from "react-icons/fa"
-import { socketService } from "../services/socket.service.js"
-// import { UserMsg } from "./user-msg.jsx"
+import { FaPinterest, FaFacebook, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa"
 
-function _AppFooter() {
-  // socketService.emit('chat newMsg', 'test test test')
-  socketService.emit('test', 'hi from socket front')
+
+
+export function AppFooter() {
 
   return (
     <footer className="app-footer  main-layout">
-      {/* <button onClick={() => {
-        
-      }}>socket</button> */}
+
       <div className="footer-links ">
         <NavLink className="clean-link footer-link" to="/explore">
           <div>Categories</div></NavLink>
@@ -35,10 +24,6 @@ function _AppFooter() {
       </div>
 
 
-
-
-
-
       <div className="copyrights-and-social-nav">
         <div>
           <NavLink className="clean-link" to="/">
@@ -48,7 +33,11 @@ function _AppFooter() {
         </div>
         <ul className="clean-list social-nav">
           <li className="icon-wrap">
-            <a href="https://twitter.com" target="_blank" aria-label="twitter">
+            <a href="https://twitter.com"
+              target="_blank"
+              aria-label="twitter"
+              rel="noreferrer"
+            >
               <FaTwitter />
             </a>
           </li>
@@ -56,6 +45,7 @@ function _AppFooter() {
             <a
               href="https://facebook.com"
               target="_blank"
+              rel="noreferrer"
               aria-label="facebook"
             >
               <FaFacebook />
@@ -65,7 +55,8 @@ function _AppFooter() {
             <a
               href="https://linkedin.com"
               target="_blank"
-              aria-label="linikedin"
+              aria-label="linkedin"
+              rel="noreferrer"
             >
               <FaLinkedin />
             </a>
@@ -75,6 +66,7 @@ function _AppFooter() {
               href="https://pinterst.com"
               target="_blank"
               aria-label="pinterst"
+              rel="noreferrer"
             >
               <FaPinterest />
             </a>
@@ -84,6 +76,7 @@ function _AppFooter() {
               href="https://instagram.com"
               target="_blank"
               aria-label="instagram"
+              rel="noreferrer"
             >
               <FaInstagram />
             </a>
@@ -96,13 +89,4 @@ function _AppFooter() {
   )
 }
 
-function mapStateToProps(state) {
-  return {}
-}
 
-const mapDispatchToProps = {}
-
-export const AppFooter = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_AppFooter)
