@@ -14,6 +14,7 @@ import { PopoverNav } from "./popover-nav.jsx"
 
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
+
   let navigate = useNavigate();
 
 
@@ -103,7 +104,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
 
   return (
-    <header className="app-header">
+    <header className="app-header main-container">
       <div className=
         {(currLocation === "/" && !navbarWhite) ?
           "navbar nav-container flex align-center space-between" :

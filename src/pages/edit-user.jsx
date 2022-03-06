@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { updateUser } from '../store/user.actions';
 
 function _EditUser({ user, updateUser }) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     let navigate = useNavigate();
 

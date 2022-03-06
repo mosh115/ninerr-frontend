@@ -21,6 +21,9 @@ import cameralogo from '../assets/img/cameralogo.png';
 function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
 
     let navigate = useNavigate();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         if (!user) {

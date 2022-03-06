@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { uploadImg } from '../services/cloudinary.service';
 import { connect } from "react-redux"
 import { addGig } from '../store/gig.actions';
@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 function _AddEditGig({ user, addGig }) {
     let navigate = useNavigate();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const [inputValues, setInputValue] = useState({
         title: "",

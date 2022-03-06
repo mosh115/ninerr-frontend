@@ -14,11 +14,13 @@ import { TableRating } from '../cmps/table-rating';
 import { AvatarPicture } from '../cmps/user-avatar-picture';
 import { addOrder } from '../store/order.actions'
 import { Loader } from '../cmps/Loader';
-import { ScrollToTop } from "../cmps/scroll-to-top"
 
 
 
 function _GigDetails({ user, addOrder }) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
 
     const [gig, setGig] = useState()
@@ -72,7 +74,6 @@ function _GigDetails({ user, addOrder }) {
 
     return (
         <section className='gig-details flex '>
-            <ScrollToTop />
 
             <section className='details-container'>
                 <div className='gig-overview'>

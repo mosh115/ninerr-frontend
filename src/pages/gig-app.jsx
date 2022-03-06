@@ -5,11 +5,13 @@ import { GigList } from "../cmps/gig-list.jsx"
 import { loadGigs, addGig, setFilter } from "../store/gig.actions.js"
 import { SelectDelivery } from '../cmps/select-delivery'
 import { SelectSellerLevels } from '../cmps/select-seller'
-import { ScrollToTop } from "../cmps/scroll-to-top"
 
 
 
 function _GigApp({ loadGigs, gigs, setFilter }) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     let url = window.location.href;
 
@@ -93,7 +95,7 @@ function _GigApp({ loadGigs, gigs, setFilter }) {
 
     return (
         <div className="gig-app main-container">
-            <ScrollToTop />
+
             <nav className="headr-nav flex">
                 <Link to="/">Ninerr</Link>
                 <span>
