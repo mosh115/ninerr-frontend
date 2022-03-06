@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function uploadImg(file) {
-    // console.log(file);
+
     const CLOUD_NAME = 'ddkzek0ux'
     const UPLOAD_PRESET = 'n9hqjdzj'
     const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
@@ -16,7 +16,7 @@ export async function uploadImg(file) {
             method: 'POST',
             data: formData
         })
-        // console.log(res.data.url);
+
         return res.data.url
     }
     catch (err) {

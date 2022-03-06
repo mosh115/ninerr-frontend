@@ -1712,5 +1712,5 @@ function getCountryCode(code) {
     return country.two_letters_code
 }
 
-window.makeLevel = makeLevel
+
 

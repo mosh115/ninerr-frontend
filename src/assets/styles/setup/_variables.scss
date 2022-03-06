@@ -16,11 +16,9 @@ $clr13: #4a73e8;
 $clr20: #404145; // the real color of fiverr logo, used for our logo also
 $clr21: #1a965c; // brand color - darkened for hover effect in buttons
 $clr22: #19a463; // brand color - darkened for hover effect in buttons
-// $clr5: #dff0ea;
-// $clr6: #fff;
-// $clr7: #222;
 
 // Breakpoints
 $mobile-breakpoint: 460px;
-$narrow-breakpoint: 720px;
-$normal-breakpoint: 960px;
+$narrow-breakpoint: 600px;
+$normal-breakpoint: 900px;
+$wide-breakpoint: 1200px;

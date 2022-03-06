@@ -6,18 +6,18 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export function SelectDelivery({ daysToDelivery, setDaysToDelivery }) {
-    const [age, setAge] = React.useState(daysToDelivery) || Infinity;
+    const [delivery, setDelivery] = useState(daysToDelivery) || Infinity;
 
     useEffect(() => {
-        setDaysToDelivery(age);
-    }, [age])
+        setDaysToDelivery(delivery);
+    }, [delivery])
 
     useEffect(() => {
-        setAge(daysToDelivery);
+        setDelivery(daysToDelivery);
     }, [daysToDelivery])
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setDelivery(event.target.value);
     };
 
     return (
@@ -27,10 +27,9 @@ export function SelectDelivery({ daysToDelivery, setDaysToDelivery }) {
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={age}
+                    value={delivery}
                     label="Delivery"
-                    onChange={handleChange}
-                >
+                    onChange={handleChange}>
                     <MenuItem value={1}>Express 24H</MenuItem>
                     <MenuItem value={3}>Up to 3 Days</MenuItem>
                     <MenuItem value={7}>Up to 7 Days</MenuItem>
