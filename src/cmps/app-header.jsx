@@ -55,7 +55,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
   useEffect(() => {
     changeHeaderBehavior()
-    // adding the event when scroll change background
+    // adding the event when a page loads or changes
     window.addEventListener('scroll', changeHeaderBehavior, true)
     return () => {
       window.removeEventListener('scroll', changeHeaderBehavior, true);
