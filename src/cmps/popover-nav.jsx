@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 
 
-export function PopoverNav({ onLogout, togglePopoverNav }) {
+export function PopoverNav({ onLogout, togglePopoverNav, toggleSignIn }) {
 
     let navigate = useNavigate();
 
@@ -16,6 +16,7 @@ export function PopoverNav({ onLogout, togglePopoverNav }) {
     }
     const onClosePopNav = () => {
         togglePopoverNav();
+        toggleSignIn(false);
     }
 
     return (

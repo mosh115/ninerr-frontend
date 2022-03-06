@@ -55,7 +55,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
   useEffect(() => {
     changeHeaderBehavior()
-    // adding the event when scroll change background
+    // adding the event when a page loads or changes
     window.addEventListener('scroll', changeHeaderBehavior, true)
     return () => {
       window.removeEventListener('scroll', changeHeaderBehavior, true);
@@ -171,7 +171,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         )}
       </div>
       {isSignIn && !user && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
-      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} />}
+      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} toggleSignIn={toggleSignIn} />}
 
 
     </header>

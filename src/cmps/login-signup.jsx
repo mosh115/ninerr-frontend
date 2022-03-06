@@ -18,7 +18,6 @@ export function LoginSignup({ onLogin, toggleSignIn, isSignUp, toggleSignUp }) {
 
     const clearState = () => {
         setCredentials({ username: '', password: '', fullname: '' })
-        setIsSignup(false)
     }
 
     const handleChange = ev => {
