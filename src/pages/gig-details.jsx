@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux"
-import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import { gigService } from '../services/gig.service';
 import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
+import { showErrorMsg } from '../services/event-bus.service';
 import ImageGallery from 'react-image-gallery';
 import { FaStar, FaCheck, FaSyncAlt } from "react-icons/fa";
 import { ImClock } from "react-icons/im";
@@ -14,12 +14,14 @@ import { TableRating } from '../cmps/table-rating';
 import { AvatarPicture } from '../cmps/user-avatar-picture';
 import { addOrder } from '../store/order.actions'
 import { Loader } from '../cmps/Loader';
-import { showErrorMsg } from '../services/event-bus.service';
 
 
 
 function _GigDetails({ user, addOrder }) {
-    // console.log(user);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
 
     const [gig, setGig] = useState()
     const [userSeller, setUserSeller] = useState()
@@ -33,9 +35,7 @@ function _GigDetails({ user, addOrder }) {
 
     async function loadGigAndSeller() {
         let gig = await gigService.getById(gigId)
-        // console.log('gig', gig);
         const seller = await userService.getById(gig.owner._id)
-        // console.log('seller', seller);
         setGig(gig)
         setUserSeller(seller)
     }
@@ -58,8 +58,6 @@ function _GigDetails({ user, addOrder }) {
             },
             status: "pending"
         }
-
-        // console.log(newOrder);
         addOrder(newOrder)
 
     }
@@ -68,14 +66,6 @@ function _GigDetails({ user, addOrder }) {
     function getRandomNum() {
         return utilService.getRandomIntInclusive(1, 80)
     }
-
-    // function getNumOfRaters() {
-    //     let raters = gig.owner.raters;
-    //     let num = raters;
-    //     if (raters > 1000 && raters < 1300) num = '1K+'
-    //     if (raters >= 1300 && raters < 1400) num = '2K+'
-    //     return num
-    // }
 
 
 
@@ -91,7 +81,6 @@ function _GigDetails({ user, addOrder }) {
                 </div>
                 <div className='seller-overview flex'>
                     <AvatarPicture user={gig.owner} size={'32px'} isGrey={false} />
-                    {/* <img className='avatar' src={userSeller.imgUrl || `https://i.pravatar.cc/24?u=${userSeller._id}`} /> */}
                     <Link to={'/#'}> {gig.owner.fullname}</Link>
                     <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
                     <ReactStars classNames="stars" count={+gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
@@ -115,7 +104,6 @@ function _GigDetails({ user, addOrder }) {
                 <div className='about-seller flex'>
                     <div className='profile-info'>
                         <AvatarPicture user={gig.owner} size={'110px'} isGrey={false} />
-                        {/* <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/110?u=${gig._id}`} /> */}
                     </div>
                     <div className='seller-info'>
                         <Link className='name' to={'/#'}> {gig.owner.fullname}</Link>
@@ -124,7 +112,6 @@ function _GigDetails({ user, addOrder }) {
                             <ReactStars count={+gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                             <p className='rating'>{+gig.owner.rate} </p>
                             <p className='raters'>({+gig.owner.raters})</p>
-
                         </div>
                         <button className='btn-contact-me'>Contact Me</button>
                     </div>

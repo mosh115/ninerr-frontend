@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-// import ReactDOM from 'react-dom';
+import React from 'react';
+
 
 
 export function MarketPlaceService({ title, img }) {
@@ -9,7 +8,7 @@ export function MarketPlaceService({ title, img }) {
     return (
         <article >
             <li className='market-place-service'>
-                <i><img src={img} /></i>
+                <i><img src={img} alt="img_services" /></i>
                 <hr />
                 <h3>{title}</h3>
             </li>

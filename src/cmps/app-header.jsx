@@ -1,24 +1,20 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import { NavLink, useLocation, useNavigate, Link } from "react-router-dom"
-import { showSuccessMsg } from "../services/event-bus.service.js"
 import { socketService } from "../services/socket.service.js"
-// import { utilService } from '../services/util.service'
-
-// import routes from "../routes"
 import { FaSearch } from "react-icons/fa"
 import { HiMenu } from "react-icons/hi"
-// this is for the nav bar to change bcg color when scrolling
-import { useState, useEffect } from "react"
 
 import { onLogin, onLogout, onSignup, removeUser } from "../store/user.actions.js"
-import { LoginSignup } from "./login-signup.jsx"
-import { PopoverNav } from "./popover-nav.jsx"
 import { setFilter } from '../store/gig.actions'
 
+import { LoginSignup } from "./login-signup.jsx"
+import { PopoverNav } from "./popover-nav.jsx"
 
-function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
-  // let interval
+
+function _AppHeader({ onLogin, onSignup, onLogout, user }) {
+
+
   let navigate = useNavigate();
 
 
@@ -28,76 +24,70 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   const [isPopoverNav, togglePopoverNav] = useState(false)
   const [searchContent, setSearchContent] = useState('')
 
+
+
   useEffect(() => {
     socketService.on('order-added', (order) => {
-      setIsNotifaction(!isNotifaction)
-      // interval = setInterval(() => {
-
-      // }, 1000)
-
-      // setTimeout(() => setIsNotifaction(false), 5000)
-      // showSuccessMsg('Order was added, check it out')
-      // showSuccessMsg(`Order was added, check it out ${order._id}`)
+      console.log('newOrder');
     }, [])
   })
+
 
   //* gets the current page's path
   let currLocation = useLocation().pathname
 
   useEffect(() => {
     if (currLocation === '/profile' && isNotifaction) setIsNotifaction(false)
-
-    // clearInterval(interval)
   }, [currLocation])
 
   useEffect(() => {
     if (isSignIn) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'unset';
+    else document.body.style.overflow = 'scroll';
   }, [isSignIn])
 
+
   //* controls header beaviour - background color, sticky or scrolling, depends on the current page
-  const [navbar, setNavbar] = useState(false)
-  const [subNavbar, setSubNavbar] = useState(false)
-  const [navsDisappear, setNavsDisappear] = useState(false)
- 
+  const [navbarWhite, setNavbarWhite] = useState(false)
+  const [subNavbarShow, setSubNavbarShow] = useState(false)
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false)
 
 
-  //* navbar scroll/route behaviour change 
 
-  const changeHeaderBehaviour = () => {
+  useEffect(() => {
+    changeHeaderBehavior()
+    // adding the event when scroll change background
+    window.addEventListener('scroll', changeHeaderBehavior, true)
+    return () => {
+      window.removeEventListener('scroll', changeHeaderBehavior, true);
+    }
+  }, [])
+
+  //* navbar scroll/route behavior change 
+  const changeHeaderBehavior = () => {
 
     //* in homepage, when starting to scroll - will change background to white
     if (window.scrollY >= 20) {
-      setNavbar(true)
-    } else {
-      setNavbar(false)
+      setNavbarWhite(true)
     }
-    //* and when scrolling some more - the categories navbar will appear
+    else {
+      setNavbarWhite(false)
+    }
+
+    //* when scrolling more, subNavbar shows
     if (window.scrollY >= 250) {
-      setSubNavbar(true)
+      setSubNavbarShow(true)
     } else {
-      setSubNavbar(false)
+      setSubNavbarShow(false)
     }
-    //* in pages except HomePage, both navbars appear with white background, 
-    //* and the search bar shows.
-    //* and both scroll with page after scrolling some distance
+
+    //* except HomePage, both navbars show with white background, 
+    //* and scrolls up with the page
     if (window.scrollY >= 400 && currLocation !== '/') {
-      setNavsDisappear(true)
+      setIsHeaderFixed(true)
     } else {
-      setNavsDisappear(false)
+      setIsHeaderFixed(false)
     }
   }
-
-  useEffect(() => {
-    changeHeaderBehaviour()
-    // adding the event when scroll change background
-    window.addEventListener("scroll", changeHeaderBehaviour, true)
-    return () => {
-      window.removeEventListener("scroll", changeHeaderBehaviour, true);
-    }
-
-  }, [currLocation])
-
 
   const handleChange = ({ target }) => {
     setSearchContent(target.value)
@@ -110,18 +100,15 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
   }
 
-  // useEffect(() => {
-  //   if (isSignIn) document.body.style.overflow = 'hidden';
-  //   else document.body.style.overflow = 'unset';
-  // }, [isSignIn])
-  
- 
+
+
+
   return (
-    <header className="app-header">
+    <header className="app-header main-container">
       <div className=
-        {(currLocation === '/' && !navbar) ?
+        {(currLocation === "/" && !navbarWhite) ?
           "navbar nav-container flex align-center space-between" :
-          (!navsDisappear ?
+          (!isHeaderFixed ?
             "navbar white nav-container flex align-center space-between" :
             "navbar white nav-container flex align-center space-between no-sticky")
         } >
@@ -132,17 +119,17 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
           <NavLink className="logo-font clean-link" to="/">
             Ninerr<span className="logo-point">.</span>
           </NavLink>
-          <form className={subNavbar || currLocation !== '/' ?
-            'navbar-search-box ' :
-            'navbar-search-box hidden'}>
-            <div className='search-box-icon'><i><FaSearch /></i> </div>
+          <form className={subNavbarShow || currLocation !== '/' ?
+            "navbar-search-box" :
+            "navbar-search-box hidden"}>
+            <div className="search-box-icon"><i><FaSearch /></i> </div>
             <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder="Find Services" />
             <button onClick={onSearch}>Search</button>
           </form>
         </div>
 
 
-        {/* <nav className="side-bar flex align-center space-between"> */}
+
         <nav className="flex align-center space-between">
           <NavLink className="about clean-link" to="/about">
             About
@@ -150,19 +137,19 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
           <NavLink className="explore clean-link" to="/explore">
             Explore
           </NavLink>
-          {!user && <React.Fragment><div className=" sign-in pointer" onClick={() => { toggleSignIn(true) }}>
+          {!user && <><div className=" sign-in pointer" onClick={() => { toggleSignIn(true) }}>
             Sign in
           </div>
             <div className="join pointer" onClick={() => { toggleSignIn(true); toggleSignUp(true) }}>
               Join
             </div>
-          </React.Fragment>}
-          {/* {user && <AvatarPicture user={user} size="32px" isGrey={false} onClick={() => { togglePopoverNav(true) }} className="pointer"/>} */}
+          </>}
+
           {user && <div className="avatar-container">
             {!user.imgUrl &&
               <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{ backgroundColor: user.avatarColor }}>
                 <p>{user.username[0].toUpperCase()}</p>
-                {/* <div className="dot"></div> */}
+
               </div>}
             {user.imgUrl &&
               <div className="user-picture pointer" onClick={() => { togglePopoverNav(true) }}>
@@ -170,14 +157,13 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
               </div>
             }
             <div className={isNotifaction ? "red-dot" : "dot"}></div>
-            {/* {isNotifaction && <div className="red-dot"></div>} */}
           </div>}
         </nav>
 
       </div>
-      <div className={!subNavbar && currLocation === '/' ?
+      <div className={!subNavbarShow && currLocation === '/' ?
         "sub-nav hidden" :
-        (navsDisappear ? "sub-nav no-sticky" : "sub-nav")
+        (isHeaderFixed ? "sub-nav no-sticky" : "sub-nav")
       }>
 
         {['Website design', 'Wordpress', 'Logo design', 'Music', 'Voice Over', 'Translating'].map((tag, idx) =>

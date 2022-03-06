@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaHeart } from "react-icons/fa";
 import ImageGallery from 'react-image-gallery';
-import { AvatarPicture } from './user-avatar-picture';
+
 
 
 
 
 export function GigPreview({ gig }) {
 
-    function getNumOfRaters() {
+    const getNumOfRaters = () => {
         let raters = gig.owner.raters;
         let num = raters;
         if (raters > 1000 && raters < 1300) num = '1K+'
         if (raters >= 1300 && raters < 1400) num = '2K+'
         return num
     }
-    // console.log(gig);
 
     const images = gig.imgUrls.map(img => { return { original: img } })
 
@@ -36,7 +35,7 @@ export function GigPreview({ gig }) {
 
                 <section className='seller-info flex'>
                     {/* <AvatarPicture user={gig.owner} size={'24px'} isGrey={false} /> */}
-                    <img className='avatar' src={gig.owner.imgUrl} />
+                    <img className='avatar' src={gig.owner.imgUrl} alt="avatar" />
                     <div>
                         <Link className='seller-name' to={'/#'}> {gig.owner.fullname}</Link>
                         <p className='seler-level'>{gig.owner.level}</p>
@@ -46,13 +45,11 @@ export function GigPreview({ gig }) {
                 <h3><Link className='gig-title clean-link' to={`/gig/${gig._id}`}> {gig.title}</Link></h3>
                 <section className='gig-rating flex'>
                     <FaStar className='star' />
-                    {/* <span className='star'>{star}</span> */}
                     <p className='rating'>{gig.owner.rate} </p>
                     <p className='raters'>({getNumOfRaters()})</p>
                 </section>
                 <footer className='footer flex'>
                     <FaHeart className='heart' />
-                    {/* <div>{heart}</div> */}
                     <Link to={`/gig/${gig._id}`} className='clean-link'>
                         <div className='price-wrapper'>
                             <small className='small'>STARTING AT  </small>
@@ -61,7 +58,6 @@ export function GigPreview({ gig }) {
                     </Link>
                 </footer>
             </section>
-
         </article>
     )
 }

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -27,7 +27,7 @@ const levels = [
 ];
 
 export function SelectSellerLevels({ sellerLevel, setSellerLevel }) {
-    const [stateSellerLevel, setsellerLevel] = React.useState( sellerLevel);
+    const [stateSellerLevel, setsellerLevel] = React.useState(sellerLevel);
 
     useEffect(() => {
         setSellerLevel(stateSellerLevel);
@@ -42,7 +42,6 @@ export function SelectSellerLevels({ sellerLevel, setSellerLevel }) {
             target: { value },
         } = event;
         setsellerLevel(
-            // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
     };

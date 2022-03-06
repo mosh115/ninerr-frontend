@@ -7,7 +7,6 @@ export function ProgressBar(props) {
         <section className="progress-bar">
             <div className="container-style">
                 <div className="filler-style" style={{ width: `${completed}%` }}>
-
                 </div>
             </div>
         </section>

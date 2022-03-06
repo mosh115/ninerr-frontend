@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { uploadImg } from '../services/cloudinary.service';
 import { connect } from "react-redux"
 import { addGig } from '../store/gig.actions';
@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 function _AddEditGig({ user, addGig }) {
     let navigate = useNavigate();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const [inputValues, setInputValue] = useState({
         title: "",
@@ -20,13 +23,13 @@ function _AddEditGig({ user, addGig }) {
         orderdetails: ""
     });
 
-    function handleChange(ev) {
+    const handleChange = (ev) => {
         const { name, value } = ev.target;
         setInputValue({ ...inputValues, [name]: value });
 
     }
 
-    function handleChange1(ev) {
+    const handleChange1 = (ev) => {
         const { name, value } = ev.target;
         const arr = value.split(',')
         setInputValue({ ...inputValues, [name]: arr });
@@ -49,17 +52,17 @@ function _AddEditGig({ user, addGig }) {
         addGig(newGig)
         navigate('/profile')
     }
-    // window.makeLevel
+
 
 
     async function onUploadImg(ev) {
-        // console.log(typeof ev.target.files);        
+
         const urls = []
 
         Object.values(ev.target.files).forEach(async (file) => {
             const url = await uploadImg(file)
+            url.replace(/^http:\/\//i, 'https://');
             urls.push(url)
-            // console.log(urls);
             setInputValue({ ...inputValues, imgUrls: urls });
         })
     }
@@ -215,7 +218,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     addGig
-    // updateUser,
+
 
 }
 

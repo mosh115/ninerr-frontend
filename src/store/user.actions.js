@@ -2,19 +2,21 @@ import { userService } from "../services/user.service.js";
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from "../services/socket.service.js";
 
-// export function loadUsers() {
-//     return async dispatch => {
-//         try {
-//             dispatch({ type: 'LOADING_START' })
-//             const users = await userService.getUsers()
-//             dispatch({ type: 'SET_USERS', users })
-//         } catch (err) {
-//             console.log('UserActions: err in loadUsers', err)
-//         } finally {
-//             dispatch({ type: 'LOADING_DONE' })
-//         }
-//     }
-// }
+export function loadUser() {
+    return async dispatch => {
+        try {
+            dispatch({ type: 'SET_USER' })
+            const user = await userService.getLoggedinUser()
+            if (!user) return
+            dispatch({ type: 'SET_USER', user })
+        } catch (err) {
+            console.log('UserActions: err in loadUser', err)
+        }
+        // finally {
+        //     dispatch({ type: 'LOADING_DONE' })
+        // }
+    }
+}
 
 export function removeUser(userId) {
     return async dispatch => {
@@ -32,7 +34,7 @@ export function updateUser(userToUpdate) {
     return async (dispatch) => {
         try {
             const user = await userService.update(userToUpdate)
-            console.log('user after action', user);
+            // console.log('user after action', user);
             dispatch({ type: 'SET_USER', user })
 
         } catch (err) {
@@ -68,7 +70,7 @@ export function onSignup(credentials) {
                 user
             })
         } catch (err) {
-            // showErrorMsg('Cannot signup')
+            showErrorMsg('Cannot signup')
             console.log('Cannot signup', err)
         }
 

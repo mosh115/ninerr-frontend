@@ -63,4 +63,11 @@
             line-height: 21px;
         }
     }
+
+    @include for-narrow-layout {
+    }
+    @include for-normal-layout {
+    }
+    @include for-wide-layout {
+    }
 }

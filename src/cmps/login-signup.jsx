@@ -1,26 +1,18 @@
 import { useState, useEffect } from 'react'
-import { userService } from '../services/user.service'
-import { useHistory, useLocation } from "react-router-dom";
-import { socketService } from '../services/socket.service';
 
-export function LoginSignup(props) {
-    // let history = useHistory();
-    // let location = useLocation();
-    // console.log(props);
+
+export function LoginSignup({ onLogin, toggleSignIn, isSignUp, toggleSignUp }) {
+
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
-    const [isSignup, setIsSignup] = useState(props.isSignUp)
-    const [users, setUsers] = useState([])
+    const [isSignup, setIsSignup] = useState(isSignUp)
 
-    useEffect(async () => {
-        const users = await userService.getUsers()
-        setUsers(users)
-    }, [])
 
     useEffect(() => {
         const { username, password } = credentials
         if (username === 'guest' && password === 'guest') {
-            props.onLogin(credentials);
+            onLogin(credentials);
             clearState()
+            toggleSignIn(false)
         }
     }, [credentials]);
 
@@ -34,25 +26,24 @@ export function LoginSignup(props) {
         setCredentials({ ...credentials, [field]: value });
     }
 
-    function onGuestMode() {
+    const onGuestMode = () => {
         setCredentials({ username: 'guest', password: 'guest', fullname: '' })
+
     }
-    const onLogin = (ev = null) => {
+    const login = (ev = null) => {
         if (ev) ev.preventDefault();
         if (!credentials.username) return;
-        props.onLogin(credentials);
-
-
+        onLogin(credentials);
+        toggleSignIn(false)
         clearState()
-        // history.push(location.pathname);
     }
 
     const onSignup = (ev = null) => {
         if (ev) ev.preventDefault();
         if (!credentials.username || !credentials.password || !credentials.fullname) return;
-        props.onSignup(credentials);
+        onSignup(credentials);
         clearState()
-        // history.push(location.pathname);
+        toggleSignIn(false)
     }
 
     const toggleSignup = (ev) => {
@@ -65,19 +56,11 @@ export function LoginSignup(props) {
     }
 
     return (
-        <div className="login-background flex justify-center align-center" onClick={() => { props.toggleSignIn(false); props.toggleSignUp(false); }}>
+        <div className="login-background flex justify-center align-center" onClick={() => { toggleSignIn(false); toggleSignUp(false); }}>
             <div className="signIn-up-section" onClick={stopPropagation}>
                 {!isSignup && <section>
                     <h4>Sign In to Ninerr</h4>
-                    <form className="login-form" onSubmit={onLogin} >
-                        {/* <select
-                            name="username"
-                            value={credentials.username}
-                            onChange={handleChange}
-                        >
-                            <option value="">Select User</option>
-                            {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-                        </select> */}
+                    <form className="login-form" onSubmit={login} >
                         <input
                             type="text"
                             name="username"
@@ -143,15 +126,12 @@ export function LoginSignup(props) {
 
                     </div>
 
-                    {/* <hr></hr> */}
 
                 </section>}
                 <div className="form-footer flex justify-center align-center">
                     <p><span onClick={onGuestMode} className="green pointer">Try as a guest</span></p>
                 </div>
-                {/* <p>
-                    <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
-                </p> */}
+
             </div>
         </div>
     )

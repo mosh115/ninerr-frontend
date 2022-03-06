@@ -11,7 +11,7 @@ import img8 from '../assets/img/home-page/explore-the-marketplace/lifestyle.svg'
 import img9 from '../assets/img/home-page/explore-the-marketplace/data.svg';
 
 
-import { FcAssistant, FcFilmReel, FcOldTimeCamera, FcBullish, FcPrivacy, FcMusic, FcReading } from "react-icons/fc";
+
 import { MarketPlaceService } from '../cmps/market-place-service';
 
 export function ExploreMarketPlace() {
