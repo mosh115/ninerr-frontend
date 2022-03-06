@@ -26,7 +26,6 @@ export function LoginSignup(props) {
 
     const clearState = () => {
         setCredentials({ username: '', password: '', fullname: '' })
-        setIsSignup(false)
     }
 
     const handleChange = ev => {

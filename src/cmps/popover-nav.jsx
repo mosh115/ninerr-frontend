@@ -22,6 +22,7 @@ export function PopoverNav(props) {
     }
     const onClosePopNav = () => {
         props.togglePopoverNav();
+        props.toggleSignIn(false);
     }
 
     return (

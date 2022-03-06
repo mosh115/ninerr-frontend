@@ -185,7 +185,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         )}
       </div>
       {isSignIn && !user && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
-      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} />}
+      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} toggleSignIn={toggleSignIn} />}
 
 
     </header>
