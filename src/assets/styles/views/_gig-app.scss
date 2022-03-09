@@ -1,15 +1,15 @@
 .gig-app {
     color: $clr3;
-    margin-top: 80px;
+    margin-top: 40px;
     padding-top: 34px;
-    
-    .headr-nav  {
+
+    .headr-nav {
         margin-top: 30px;
         padding-bottom: 30px;
-        &>*{
-        padding-inline-end: 10px;
-        color: #62646a;
-        fill: #62646a;
+        & > * {
+            padding-inline-end: 10px;
+            color: #62646a;
+            fill: #62646a;
         }
         span {
             display: flex;
@@ -19,13 +19,15 @@
             text-decoration: underline;
         }
     }
-    .box{
-        max-width: 150px;
-    }
-    //added space between filter box and gigs
-    .filters{
+
+    .filters {
+        flex-direction: column;
         margin-bottom: 1em;
-        align-items: center;
+        gap: 10px;
+        .css-2m9kme-MuiFormControl-root {
+            width: 100%;
+            margin: 0;
+        }
 
         .claer-btn {
             height: 56px;
@@ -34,7 +36,7 @@
             border-radius: 4px;
             align-items: center;
             justify-content: center;
-            &:hover{
+            &:hover {
                 background-color: $clr1;
                 color: white;
             }
@@ -45,5 +47,23 @@
     }
     .no-gig-msg {
         margin-bottom: 40px;
+    }
+    @include for-narrow-layout {
+        .filters {
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .css-2m9kme-MuiFormControl-root {
+                min-width: 270px;
+            }
+        }
+        .box {
+            max-width: 150px;
+        }
+    }
+    @include for-normal-layout {
+        margin-top: 80px;
+    }
+    @include for-wide-layout {
     }
 }

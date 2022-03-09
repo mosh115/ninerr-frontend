@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaStar, FaHeart } from "react-icons/fa";
-import ImageGallery from 'react-image-gallery';
+import ImageGallery, { LeftNav } from 'react-image-gallery';
 
 
 
 
 
 export function GigPreview({ gig }) {
+    const navigate = useNavigate();
 
     const getNumOfRaters = () => {
         let raters = gig.owner.raters;
@@ -17,24 +18,30 @@ export function GigPreview({ gig }) {
         return num
     }
 
+    const onClick = (e, link) => {
+        navigate(link)
+
+    }
+
+
+
     const images = gig.imgUrls.map(img => { return { original: img } })
 
 
     return (
         <article className="gig-preview" key={gig._id}>
             <div className='carusel'>
-                {/* <Link className='clean-link' to={`/gig/${gig._id}`}> */}
-
-                <ImageGallery items={images} showThumbnails={false} showPlayButton={false} showFullscreenButton={false} showBullets={true} />
-
-                {/* </Link> */}
+                <ImageGallery items={images} showThumbnails={false}
+                    showPlayButton={false} showFullscreenButton={false}
+                    showBullets={true}
+                    onClick={(e) => onClick(e, `/gig/${gig._id}`)}
+                />
             </div>
 
 
             <section className='preview-card'>
 
                 <section className='seller-info flex'>
-                    {/* <AvatarPicture user={gig.owner} size={'24px'} isGrey={false} /> */}
                     <img className='avatar' src={gig.owner.imgUrl} alt="avatar" />
                     <div>
                         <Link className='seller-name' to={'/#'}> {gig.owner.fullname}</Link>

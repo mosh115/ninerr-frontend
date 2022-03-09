@@ -232,91 +232,91 @@
       background-color: red;
     }
   }
-  // @media (max-width: 900px) {
-  //   width: 100vw;
+  @media (max-width: 900px) {
+    width: 100vw;
 
-  //   .nav-container {
-  //     background-color: $clr6;
-  //     display: flex;
-  //     justify-content: space-between;
-  //   }
-  //   .hamburger {
-  //     display: block;
-  //     font-size: 2em;
-  //     display: flex;
-  //     align-items: center;
-  //     justify-content: center;
-  //     color: $clr3;
-  //   }
-  //   .sub-nav {
-  //     display: none;
-  //   }
-  //   .about,
-  //   .explore,
-  //   .sign-in,
-  //   .navbar-search-box {
-  //     display: none;
-  //   }
-  //   .join {
-  //     padding: 7px 0px;
-  //     margin-left: 0px;
-  //     border: none;
-  //     color: $clr3;
-  //     font-size: 16px;
-  //     font-weight: 600;
-  //     &:hover {
-  //       background-color: transparent;
-  //       border: none;
-  //       opacity: 0.8;
-  //     }
-  //     .sign-in {
-  //       display: block;
-  //       color: $clr3;
-  //     }
-  //     .avatar-container {
-  //       display: block;
-  //     }
-  //   }
-  //   .logo-font {
-  //     color: $clr2;
-  //   }
-  //   //////////////////////////////////
-  //   .side-bar {
-  //     display: block;
-  //     background-color: rgba(255, 255, 255, 0.708);
-  //     border: 3px solid red;
-  //     position: fixed;
-  //     z-index: 10;
-  //     width: 272px;
-  //     height: 100vh;
-  //     top: 0;
-  //     padding-top: 20px;
-  //     // left: -272px;
-  //     transition: all 0.3s ease;
-  //     .navbar {
-  //       display: flex;
-  //       flex-direction: column;
-  //     }
-  //     .nav-container {
-  //       .side-bar {
-  //         a {
-  //           width: 100%;
-  //         }
-  //         background-color: orange;
-  //         flex-direction: column;
-  //       }
-  //       display: flex;
-  //       flex-direction: column;
-  //       position: relative;
-  //       padding: 0;
-  //     }
-  //     .sub-nav {
-  //       visibility: hidden;
-  //     }
-  //     .logo-and-search-box {
-  //       visibility: hidden;
-  //     }
-  //   }
-  ///////////////////
+    .nav-container {
+      background-color: $clr6;
+      display: flex;
+      justify-content: space-between;
+    }
+    .hamburger {
+      display: block;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $clr3;
+    }
+    .sub-nav {
+      display: none;
+    }
+    .about,
+    .explore,
+    .sign-in,
+    .navbar-search-box {
+      display: none;
+    }
+    .join {
+      padding: 7px 0px;
+      margin-left: 0px;
+      border: none;
+      color: $clr3;
+      font-size: 16px;
+      font-weight: 600;
+      &:hover {
+        background-color: transparent;
+        border: none;
+        opacity: 0.8;
+      }
+      .sign-in {
+        display: block;
+        color: $clr3;
+      }
+      .avatar-container {
+        display: block;
+      }
+    }
+    .logo-font {
+      color: $clr2;
+    }
+    //////////////////////////////////
+    .side-bar {
+      display: block;
+      background-color: rgba(255, 255, 255, 0.708);
+      border: 3px solid red;
+      position: fixed;
+      z-index: 10;
+      width: 272px;
+      height: 100vh;
+      top: 0;
+      padding-top: 20px;
+      // left: -272px;
+      transition: all 0.3s ease;
+      .navbar {
+        display: flex;
+        flex-direction: column;
+      }
+      .nav-container {
+        .side-bar {
+          a {
+            width: 100%;
+          }
+          background-color: orange;
+          flex-direction: column;
+        }
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 0;
+      }
+      .sub-nav {
+        visibility: hidden;
+      }
+      .logo-and-search-box {
+        visibility: hidden;
+      }
+    }
+    /////////////////
+  }
 }
-// }

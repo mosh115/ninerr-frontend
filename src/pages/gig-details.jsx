@@ -41,7 +41,6 @@ function _GigDetails({ user, addOrder }) {
     }
 
     function onMakeOrder() {
-        // console.log('place order');
         if (!user) {
             showErrorMsg('Plese login')
             return
@@ -62,7 +61,6 @@ function _GigDetails({ user, addOrder }) {
 
     }
 
-
     function getRandomNum() {
         return utilService.getRandomIntInclusive(1, 80)
     }
@@ -73,121 +71,122 @@ function _GigDetails({ user, addOrder }) {
     const images = gig.imgUrls.map(img => { return { original: img, thumbnail: img } })
 
     return (
-        <section className='gig-details flex '>
-
+        <section className='gig-details main-container '>
             <section className='details-container'>
-                <div className='gig-overview'>
-                    <h1 className='title'>{gig.title}</h1>
-                </div>
-                <div className='seller-overview flex'>
-                    <AvatarPicture user={gig.owner} size={'32px'} isGrey={false} />
-                    <Link to={'/#'}> {gig.owner.fullname}</Link>
-                    <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
-                    <ReactStars classNames="stars" count={+gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
-                    <b className='rating'>{gig.owner.rate} </b>
-                    <p className='raters'>({gig.owner.raters})<span className='stop'>|</span></p>
-                    <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
-                </div>
-
-                <div className='gallery'>
-                    <ImageGallery items={images} showThumbnails={true} showPlayButton={false} />
-                </div>
-
-
-                <div className='about-gig'>
-                    <h2>About This Gig</h2>
-                    <p>{gig.title}</p>
-                    <p>{gig.description}</p>
-                </div>
-
-                <h2>About The Seller</h2>
-                <div className='about-seller flex'>
-                    <div className='profile-info'>
-                        <AvatarPicture user={gig.owner} size={'110px'} isGrey={false} />
+                <section className='main'>
+                    <div className='gig-overview'>
+                        <h1 className='title'>{gig.title}</h1>
                     </div>
-                    <div className='seller-info'>
-                        <Link className='name' to={'/#'}> {gig.owner.fullname}</Link>
-                        <p>{userSeller.shortAbout}</p>
-                        <div className='flex'>
-                            <ReactStars count={+gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
-                            <p className='rating'>{+gig.owner.rate} </p>
-                            <p className='raters'>({+gig.owner.raters})</p>
-                        </div>
-                        <button className='btn-contact-me'>Contact Me</button>
-                    </div>
-                </div>
-                <div className='table-info'>
-                    <ul className='stats clean-list flex'>
-                        <li className='flex column'>From<strong>{userSeller.from}</strong></li>
-                        <li className='flex column'>Member since<strong>2015</strong></li>
-                        <li className='flex column'>Avg. response time<strong>1 hour</strong></li>
-                        <li className='flex column'>Last Delivey<strong>1 day</strong></li>
-                    </ul>
-                    <p>{userSeller.about}</p>
-                </div>
-
-                <div className='reviews'>
-                    <div className='details flex align-center'>
-                        <h2 className='flex'>{gig.owner.raters} Reviews
-                            <ReactStars
-                                count={+gig.owner.rate}
-                                size={16}
-                                color="#ffb33e"
-                                activeColor="#ffb33e"
-                                edit={false}
-                            />
-                            <p className='rating'>{gig.owner.rate} </p>
-                        </h2>
-                    </div>
-                    <div className='flex' >
-                        <TableRating />
-                        <section className='ranking'>
-                            <h6>Rating Breakdown</h6>
-                            <ul className='clean-list'>
-                                <li className='flex space-between'>Seller communication level <span> 5 <FaStar className='star' /></span></li>
-                                <li className='flex space-between'>Recommend to a friend <span> 4.9 <FaStar className='star' /></span></li>
-                                <li className='flex space-between'>Service as described <span> 4.9 <FaStar className='star' /></span></li>
-                            </ul>
+                    <div className='seller-overview flex'>
+                        <section className='flex align-center '>
+                            <AvatarPicture user={gig.owner} size={'32px'} isGrey={false} />
+                            <Link to={'/#'}> {gig.owner.fullname}</Link>
+                            <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
+                        </section>
+                        <section className='flex align-center '>
+                            <ReactStars classNames="stars" count={+gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                            <b className='rating'>{gig.owner.rate} </b>
+                            <p className='raters'>({gig.owner.raters})<span className='stop'>|</span></p>
+                            <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
                         </section>
                     </div>
-                </div>
-                {userSeller.reviews && userSeller.reviews.map((review, idx) => <ReviewItem review={review} key={review.id} />)}
-
-
-            </section>
-            <aside className='aside'>
-                <div className='package-content'>
-                    <h1 className='gig-label'>Package details</h1>
-                    <header>
-                        <h3>
-                            {gig.orderTitle}
-                            <div className='price-wrapper'>${gig.price}</div>
-                        </h3>
-
-                        <p className='order-description'>{gig.orderDesc}</p>
-                    </header>
-                    <div className='additional-info'>
-                        <h3 className='delievery-wrapper'>
-                            <span><ImClock /></span>
-
-                            {gig.daysToMake} Days Delievery
-                        </h3>
-                        <h3 className='revisions-wrapper'>
-                            <span><FaSyncAlt /></span>
-                            Unlimited Revisions
-                        </h3>
+                    <div className='gallery'>
+                        <ImageGallery items={images} showThumbnails={true} showPlayButton={false} showBullets={true} bulletClass='bullet' />
                     </div>
-                    <div className='gig-features'>
-                        <ul>
-                            {gig.orderdetails.map((tag, idx) => { return (<li key={idx} className='clean-list'><span><FaCheck /></span>{tag}</li>) })}
+                </section>
+
+                <aside className='aside'>
+                    <div className='package-content'>
+                        <h1 className='gig-label'>Package details</h1>
+                        <header>
+                            <h3>
+                                {gig.orderTitle}
+                                <div className='price-wrapper'>${gig.price}</div>
+                            </h3>
+
+                            <p className='order-description'>{gig.orderDesc}</p>
+                        </header>
+                        <div className='additional-info'>
+                            <h3 className='delievery-wrapper'>
+                                <span><ImClock /></span>
+
+                                {gig.daysToMake} Days Delievery
+                            </h3>
+                            <h3 className='revisions-wrapper'>
+                                <span><FaSyncAlt /></span>
+                                Unlimited Revisions
+                            </h3>
+                        </div>
+                        <div className='gig-features'>
+                            <ul>
+                                {gig.orderdetails.map((tag, idx) => { return (<li key={idx} className='clean-list'><span><FaCheck /></span>{tag}</li>) })}
+                            </ul>
+                        </div>
+                        <button onClick={onMakeOrder}>Continue <span>(${gig.price})</span></button>
+                    </div>
+                </aside>
+                <section className='second'>
+                    <div className='about-gig'>
+                        <h2>About This Gig</h2>
+                        <p>{gig.title}</p>
+                        <p>{gig.description}</p>
+                    </div>
+
+                    <h2>About The Seller</h2>
+                    <div className='about-seller flex'>
+                        <div className='profile-info'>
+                            <AvatarPicture user={gig.owner} size={'110px'} isGrey={false} />
+                        </div>
+                        <div className='seller-info flex column'>
+                            <Link className='name' to={'/#'}> {gig.owner.fullname}</Link>
+                            <p>{userSeller.shortAbout}</p>
+                            <div className='flex'>
+                                <ReactStars count={+gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                                <p className='rating'>{+gig.owner.rate} </p>
+                                <p className='raters'>({+gig.owner.raters})</p>
+                            </div>
+                            <button className='btn-contact-me'>Contact Me</button>
+                        </div>
+                    </div>
+                    <div className='table-info'>
+                        <ul className='stats clean-list flex'>
+                            <li className='flex column'>From<strong>{userSeller.from}</strong></li>
+                            <li className='flex column'>Member since<strong>2015</strong></li>
+                            <li className='flex column'>Avg. response time<strong>1 hour</strong></li>
+                            <li className='flex column'>Last Delivey<strong>1 day</strong></li>
                         </ul>
+                        <p>{userSeller.about}</p>
                     </div>
 
-                    <button onClick={onMakeOrder}>Continue <span>(${gig.price})</span></button>
-                </div>
-            </aside>
-
-
+                    <div className='reviews'>
+                        <div className='details flex align-center'>
+                            <h2 className='flex'>{gig.owner.raters} Reviews
+                                <ReactStars
+                                    count={+gig.owner.rate}
+                                    size={16}
+                                    color="#ffb33e"
+                                    activeColor="#ffb33e"
+                                    edit={false}
+                                />
+                                <p className='rating'>{gig.owner.rate} </p>
+                            </h2>
+                        </div>
+                        <div className='rating flex' >
+                            <TableRating />
+                            <section className='ranking'>
+                                <h6>Rating Breakdown</h6>
+                                <ul className='clean-list'>
+                                    <li className='flex space-between'>Seller communication level <span> 5 <FaStar className='star' /></span></li>
+                                    <li className='flex space-between'>Recommend to a friend <span> 4.9 <FaStar className='star' /></span></li>
+                                    <li className='flex space-between'>Service as described <span> 4.9 <FaStar className='star' /></span></li>
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                    {userSeller.reviews && userSeller.reviews.map(
+                        (review, idx) => <ReviewItem review={review} key={review.id} />)}
+                </section>
+            </section>
         </section>
     )
 }

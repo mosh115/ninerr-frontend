@@ -26,7 +26,7 @@ export function AppFooter() {
 
 
         <div className="copyrights-and-social-nav">
-          <div>
+          <div className="logo-and-brand">
             <NavLink className="clean-link" to="/">
               <span className="logo-font"> Ninerr. </span>
             </NavLink>
