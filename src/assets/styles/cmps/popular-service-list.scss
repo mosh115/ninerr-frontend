@@ -1,6 +1,33 @@
-.popular-service-list{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.popular-service-list {
     padding: 3em 0px;
+    .react-multi-carousel-track {
+        .react-multi-carousel-item {
+            padding: 18px;
+            // width: 15%;
+        }
+    }
+    .react-multiple-carousel__arrow {
+        background-color: #fff;
+        position: absolute;
+        z-index: 1000;
+        top: 50%;
+        width: 48px;
+        height: 48px;
+        margin-top: -24px;
+        text-align: center;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.132);
+        border: 0;
+        font-size: 16px;
+        line-height: 100%;
+
+        &::before {
+            color: black;
+        }
+        &.react-multiple-carousel__arrow--left {
+            left: -15px;
+        }
+        &.react-multiple-carousel__arrow--right {
+            right: -15px;
+        }
+    }
 }

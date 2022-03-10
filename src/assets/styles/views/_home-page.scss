@@ -136,7 +136,9 @@
         display: flex;
         background-color: $clr11;
         font-weight: 400;
+        flex-wrap: wrap;
         .content {
+            max-width: 600px;
             flex-basis: 50%;
             padding-inline-end: 8%;
             display: flex;
@@ -200,6 +202,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
+            flex-wrap: wrap;
             button {
                 margin-top: 2.5em;
                 padding: 1em 2em;
@@ -213,8 +216,8 @@
         }
     }
     @media (max-width: 900px) {
-        width: 100vw;
-        overflow: hidden;
+        // width: 100vw;
+        // overflow: hidden;
         .hero-wrapper {
             width: 100vw;
             background-color: #023a15;
@@ -269,11 +272,11 @@
                 }
             }
         }
-        .popular-services {
-            display: none;
-        }
-        .popular-services-carousel {
-            display: block;
-        }
+        // .popular-services {
+        //     display: none;
+        // }
+        // .popular-services-carousel {
+        //     display: block;
+        // }
     }
 }
