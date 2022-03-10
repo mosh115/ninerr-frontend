@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom"
 
 import Wordpress from '../assets/img/home-page/popular-professional-services/wordpress.jpg';
@@ -6,33 +6,18 @@ import VoiceOver from '../assets/img/home-page/popular-professional-services/voi
 import VideoExplainer from '../assets/img/home-page/popular-professional-services/video-explainer.jpg';
 import LogoDesign from '../assets/img/home-page/popular-professional-services/logo-design.jpg';
 import SocialMedia from '../assets/img/home-page/popular-professional-services/social-media.jpg';
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+
+
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 import { PopularServiceCard } from './popular-service-card';
 
 export function PopularServiceList() {
-    const responsive = {
-        wide: {
-            breakpoint: { max: 3000, min: 1560 },
-            items: 5,
-        },
-        desktop: {
-            breakpoint: { max: 1560, min: 900 },
-            items: 4,
-            slidesToSlide: 1
-        },
-        tablet: {
-            breakpoint: { max: 900, min: 600 },
-            items: 3,
-            slidesToSlide: 3
-        },
-        mobile: {
-            breakpoint: { max: 600, min: 0 },
-            items: 1,
-            slidesToSlide: 1
-        }
-    };
+
+    const size = useWindowSize();
+
 
     const popularServices = [
         { img: Wordpress, title: 'Wordpress', subTitle: 'Customize your site' },
@@ -42,38 +27,40 @@ export function PopularServiceList() {
         { img: SocialMedia, title: 'Social Media', subTitle: 'Reach more costumers' }
     ]
 
+    const visibleSlides = () => {
+        if (size.width > 1250) return 5;
+        else if (size.width > 1050) return 4;
+        else if (size.width > 800) return 3;
+        else if (size.width > 500) return 2;
+        else return 1;
+
+    }
+
     return (
         <section className='popular-service-list'>
-            <Carousel
-                responsive={responsive}
-                draggable={false}
+            <CarouselProvider
+                naturalSlideWidth={13}
+                naturalSlideHeight={16}
+                totalSlides={popularServices.length}
+                dragEnabled={false}
+                visibleSlides={visibleSlides()}
+                step={1}
                 infinite={true}
-                keyBoardControl={false}
-                focusOnSelect={true}
-                shouldResetAutoplay={false}
-
-                removeArrowOnDeviceType={["wide"]}
             >
-                {popularServices.map(service => {
-                    return (
-                        <Link key={service.title} to={`/explore?filter=tags:${service.title}`}>
-                            <PopularServiceCard popularService={service} />
-                        </Link>
-                    )
-                }
-                )}
-            </Carousel>
-
-            {/* <ul className='popular-service-list clean-list'>
-                {popularServices.map((service, idx) => {
-                    return (
-                        <Link key={idx} to={`/explore?filter=tags:${service.title}`}>
-                            <PopularServiceCard popularService={service} />
-                        </Link>
-                    )
-                }
-                )}
-            </ul> */}
+                <Slider className="slider" >
+                    {popularServices.map((service, idx) => {
+                        return (
+                            <Slide className='slide' index={idx} key={service.title}>
+                                <Link to={`/explore?filter=tags:${service.title}`}>
+                                    <PopularServiceCard popularService={service} />
+                                </Link>
+                            </Slide>
+                        )
+                    })}
+                </Slider>
+                <ButtonBack className="btn-nav left">B</ButtonBack>
+                <ButtonNext className="btn-nav right">N</ButtonNext>
+            </CarouselProvider>
         </section>
     )
 }
