@@ -1,7 +1,7 @@
 .gig-app {
     color: $clr3;
-    margin-top: 40px;
-    padding-top: 34px;
+    // margin-top: 40px;
+    // padding-top: 34px;
 
     .headr-nav {
         margin-top: 30px;
@@ -62,7 +62,7 @@
         }
     }
     @include for-normal-layout {
-        margin-top: 80px;
+        // margin-top: 80px;
     }
     @include for-wide-layout {
     }

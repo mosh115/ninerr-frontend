@@ -1,8 +1,6 @@
 .market-place-service {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 150px;
     h3 {
         margin-top: 0%;
@@ -17,7 +15,7 @@
         align-items: center;
         font-size: 3em;
     }
-    // border-bottom: 2px solid $clr1;
+
     hr {
         transition: 0.5s;
         border: solid 1px $clr4;

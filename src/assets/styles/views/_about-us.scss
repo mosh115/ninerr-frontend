@@ -1,7 +1,8 @@
 .about-us {
-    margin-top: 150px;
+    margin-top: 40px;
     margin-bottom: 3em;
-    width: 60%;
+    width: 90%;
+    // text-align: center;
     margin-inline: auto;
     .content {
         padding-top: 2em;
@@ -21,5 +22,11 @@
     }
     p {
         padding-top: 1em;
+    }
+    @include for-narrow-layout {
+        width: 80%;
+    }
+    @include for-normal-layout {
+        width: 60%;
     }
 }

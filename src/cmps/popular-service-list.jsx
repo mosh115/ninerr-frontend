@@ -58,8 +58,8 @@ export function PopularServiceList() {
                         )
                     })}
                 </Slider>
-                <ButtonBack className="btn-nav left">B</ButtonBack>
-                <ButtonNext className="btn-nav right">N</ButtonNext>
+                <ButtonBack className="btn-nav left"></ButtonBack>
+                <ButtonNext className="btn-nav right"></ButtonNext>
             </CarouselProvider>
         </section>
     )

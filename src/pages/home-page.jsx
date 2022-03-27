@@ -111,6 +111,7 @@ function _HomePage({ setFilter }) {
                     </div>
                 </div>
                 <div className={heroImg.idx === 4 ? 'hero-background' : 'hero-background transparent'}>
+
                     <img src={HeroImage5} alt="Jeff, Marketing expert" />
                     <div className='seller-name'>
                         <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
@@ -123,7 +124,7 @@ function _HomePage({ setFilter }) {
                         <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
                         <form className='home-page-search-box'>
                             <div className='search-box-icon'><i><FaSearch /></i> </div>
-                            <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder='Try "Building a mobile app"' />
+                            <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder='Try "Building mobile app"' />
                             <button onClick={onSearch}>Search</button>
                         </form>
                         <div className='popular-categories'>Popular:
@@ -136,7 +137,8 @@ function _HomePage({ setFilter }) {
             </div>
 
 
-            <section className='social-proof-line'>Trusted by:
+            <section className='social-proof-line'>
+                <span className='trusted'>Trusted by:</span>
                 <span>Fakelook</span>
                 <span>Coogle</span>
                 <span>BigFoot</span>
@@ -148,9 +150,6 @@ function _HomePage({ setFilter }) {
                 <h2>Popular professional services</h2>
                 <PopularServiceList />
             </section>
-
-
-
 
             <div className='more-details-about-us '>
                 <div className='content'>
@@ -177,14 +176,12 @@ function _HomePage({ setFilter }) {
                 </div>
             </div>
 
-
             <section className='explore-market-place'>
                 <h2>Explore the marketplace</h2>
                 <div className='market-place-items'>
                     <ExploreMarketPlace />
                 </div>
             </section>
-
 
             <section className='talent full main-container'>
                 <div className='find-the-talent'>

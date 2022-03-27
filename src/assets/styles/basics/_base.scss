@@ -2,14 +2,8 @@
     box-sizing: border-box;
 }
 
-// ::selection {
-//     background-color: $clr1;
-//     color: $clr1;
-// }
-
 html {
     font-family: work sans, Helvetica, Arial, sans-serif;
-    // font-family: roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     color: $clr3;
 }
@@ -18,7 +12,7 @@ body {
     font-size: rem(16px);
     margin: 0;
     //this should keep the footer in the bottom even when there is not too much content in the page
-    min-height: 100vh; 
+    min-height: 100vh;
 }
 
 h1,
@@ -28,8 +22,6 @@ h4,
 h5,
 h6 {
     margin: 0;
-    // font-family: caveat;
-    // line-height: 1;
 }
 
 section,
@@ -49,8 +41,4 @@ p {
 a {
     text-decoration: none;
     color: inherit;
-    // all: unset;
 }
-// a:hover {
-//     text-decoration: underline;
-// }
